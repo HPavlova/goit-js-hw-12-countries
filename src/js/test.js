@@ -13,7 +13,7 @@ const refs = {
   searchForm: document.querySelector('#search'),
   cardContainer: document.querySelector('.card-container'),
 };
-console.log(refs);
+// console.log(refs);
 const searchForm_DELAY = 500;
 
 // ========= listener
@@ -26,7 +26,7 @@ function onSearch(event) {
   const searchQuery = event.target.value;
   console.log(searchQuery);
 
-  // fetchCountries(searchQuery);
+  fetchCountries(searchQuery);
 
   const countriesHtml = fetchCountries(searchQuery);
   console.log(countriesHtml);
@@ -38,10 +38,30 @@ function onSearch(event) {
 function renderCard(data) {
   console.log(data);
   console.log(data.length);
-  refs.cardContainer.innerHTML = '';
-  return createMarcup(data, cardCountriesOne);
-}
 
+  if (data.length > 10) {
+    const myNotice = error({
+      type: 'notice',
+      delay: 8000,
+      // styling: 'material',
+      // animation: 'fade',
+      // sticker: true,
+      // title: false,
+      // icon: true,
+      text: 'Too many matches found. Please enter a more specific query!',
+    });
+    return myNotice;
+  } else if (data.length > 1) {
+    // refs.cardContainer.innerHtml = cardCountriesMoreOne(data);
+    return createMarcup(data, cardCountriesMoreOne);
+  } else if (data.length === 1) {
+    // refs.cardContainer.innerHtml = cardCountriesOne(data);
+    return createMarcup(data, cardCountriesOne);
+  }
+  // else {
+  //   return;
+  // }
+}
 // ========== marckup
 function createMarcup(data, template) {
   refs.cardContainer.innerHtml = template(data);
