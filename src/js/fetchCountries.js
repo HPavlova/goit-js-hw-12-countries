@@ -3,5 +3,3 @@ export default function fetchCountries(searchQuery) {
     return response.json();
   });
 }
-
-// с дефолтным экспортом функции fetchCountries(searchQuery), возвращающей промис с массивом стран, результат запроса к API.
