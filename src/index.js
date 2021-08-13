@@ -1,11 +1,13 @@
 import './sass/main.scss';
-import fetchCountries from './js/fetchCountries';
-import cardCountriesOne from './templates/countries-card-one.hbs';
-import cardCountriesMoreOne from './templates/countries-card-moreOne.hbs';
 
+var handlebars = require('handlebars');
 var debounce = require('lodash.debounce');
 import '@pnotify/core/dist/BrightTheme.css';
 import { alert, notice, info, success, error } from '@pnotify/core';
+
+import fetchCountries from './js/fetchCountries';
+import cardCountriesOne from './templates/countries-card-one';
+import cardCountriesMoreOne from './templates/countries-card-moreOne';
 
 const refs = {
   searchForm: document.querySelector('#search'),
@@ -25,7 +27,7 @@ function onSearch(event) {
   const countriesHtml = fetchCountries(searchQuery);
   console.log(countriesHtml);
 
-  countriesHtml.then(data => renderCard(data)).catch(error => console.log(error));
+  countriesHtml.then(data => renderCard(data)).catch(err => console.log(err));
 }
 
 function renderCard(data) {
