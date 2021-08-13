@@ -12,3 +12,22 @@ input,
 label {
   margin: 0.4rem 0;
 }
+
+.country-box {
+  display: flex;
+  flex-direction: row;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  // text-transform: uppercase;
+}
+
+.flag {
+  margin-left: 120px;
+}
+
+img {
+  width: 300px;
+}
